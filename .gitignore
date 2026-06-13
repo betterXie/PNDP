@@ -118,6 +118,12 @@ acs-*.bib
 # glossaries
 *.acn
 *.acr
+
+# Allow specific figure directories that match numeric suffix patterns
+!fig_6.9/
+!fig_6.9/**
+!fig_6.13/
+!fig_6.13/**
 *.glg
 *.glg-abr
 *.glo

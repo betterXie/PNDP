@@ -1,0 +1,161 @@
+\documentclass[11pt,a4paper]{ctexart}
+
+\usepackage{amsmath,amssymb,bm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usetikzlibrary{arrows.meta,calc}
+\usepackage{graphicx} 
+
+\geometry{left=2.15cm,right=2.15cm,top=2.0cm,bottom=2.0cm}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\linespread{1.12}
+
+\definecolor{mainblue}{RGB}{39,91,150}
+\definecolor{lightblue}{RGB}{232,241,252}
+\definecolor{darkgray}{RGB}{65,65,65}
+\definecolor{lightgray}{RGB}{245,246,248}
+
+\titleformat{\section}{\large\bfseries\color{mainblue}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{darkgray}}{}{0em}{}
+\titlespacing*{\section}{0pt}{0.9em}{0.45em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.25em,topsep=0.25em}
+\setlist[itemize]{leftmargin=2.0em,itemsep=0.2em,topsep=0.2em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small 格物助航｜每日一练}
+\rhead{\small 2026.6.13}
+\cfoot{\small 第 \thepage\ 页 / 共 \pageref{LastPage} 页}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtcolorbox{problemBox}{
+  colback=lightblue,
+  colframe=mainblue,
+  arc=2mm,
+  boxrule=0.7pt,
+  left=1.0em,
+  right=1.0em,
+  top=0.8em,
+  bottom=0.8em,
+  before skip=0.6em,
+  after skip=0.8em
+}
+
+\newtcolorbox{tipBox}{
+  colback=lightgray,
+  colframe=darkgray,
+  arc=1.5mm,
+  boxrule=0.5pt,
+  left=0.9em,
+  right=0.9em,
+  top=0.6em,
+  bottom=0.6em,
+  before skip=0.5em,
+  after skip=0.5em
+}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\bm{i}}
+\newcommand{\jj}{\bm{j}}
+
+\begin{document}
+
+\begin{center}
+  {\Large\bfseries\color{mainblue} 格物助航｜每日一练}\par
+  \vspace{0.25em}
+  {\large 力学第八章：狭义相对论}\par
+  \vspace{0.35em}
+  {\small 2026.6.13}\par
+  \vspace{0.35em}
+  {\small 编写：2542 桃酥OvO}
+\end{center}
+
+\vspace{-0.3em}
+
+\begin{problemBox}
+\noindent
+\begin{minipage}[c]{0.50\textwidth}
+\textbf{题目}\quad
+惯性系$S',S$间的关系如图所示。静长为$l$的直尺$AB$静止于$x'y'$平面，且与$x$轴夹角为$45^\circ$，质点$P$沿杆运动，相对于杆的速率为常量$u$，试在$S',S$系分别计算质点$P$从杆的$A$端到$B$端所经历的时间$T',T$。
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+\includegraphics[width=0.75\linewidth]{\fig_6.13\graph.jpg}
+\end{minipage}
+\end{problemBox}
+
+
+\section*{详细解法}
+
+\subsection*{解法（1）：洛伦兹变换}
+显然$T'=\dfrac{l}{u}$；
+
+下面给出三种方法求解$T$，旨在体现相对论体系的自洽性，以及便于从多个角度看待同一问题，便于对比分析。
+
+质点$P$在杆$A$端、$B$端对应的空时坐标依次为$\{x_A',t_A'\},\{x_A,t_A\}$与$\{x_B',t_B'\},\{x_B,t_B\}$。
+杆在$S'$系中的坐标差与时间差满足：
+\[
+x_B'-x_A' = l\cos45^\circ = \frac{\sqrt{2}}{2}l,\quad t_B'-t_A' = T' = \frac{l}{u}.
+\]
+根据洛伦兹变换可得：
+\[
+T = t_B - t_A
+= \frac{(t_B' - t_A') + \dfrac{v}{c^2}(x_B' - x_A')}{\sqrt{1-\beta^2}}
+= \frac{1 + \dfrac{\sqrt{2}}{2}\dfrac{uv}{c^2}}{\sqrt{1-\beta^2}}\cdot\frac{l}{u},\quad \beta = \frac{v}{c}.
+\]
+
+\subsection*{解法（2）：$x$方向速度变换}
+质点$P$在$x'$、$x$方向的速度分量为：
+\[
+u_x' = \frac{\sqrt{2}}{2}u,\quad
+u_x = \frac{u_x' + v}{1 + \dfrac{u_x'v}{c^2}}
+= \frac{\dfrac{\sqrt{2}}{2}u + v}{1 + \dfrac{\sqrt{2}}{2}\dfrac{uv}{c^2}}.
+\]
+
+$S$系中杆沿$x$方向发生长度收缩，其$x$方向长度为$\sqrt{1-\beta^2}\,l\cos45^\circ$；$P$相对杆$B$端的$x$方向追击速度为$u_x-v$，因此：
+\[
+T = \frac{\sqrt{1-\beta^2}\,l\cos45^\circ}{u_x - v}
+= \frac{1 + \dfrac{\sqrt{2}}{2}\dfrac{uv}{c^2}}{\sqrt{1-\beta^2}}\cdot\frac{l}{u}.
+\]
+
+\subsection*{解法（3）：$y$方向速度变换}
+本方法思路与解法（2）相似。质点$P$在$y'$方向速度分量：
+\[
+u_y' = \frac{\sqrt{2}}{2}u,\quad
+u_y = \frac{\sqrt{1-\beta^2}\,u_y'}{1 + \dfrac{u_x'v}{c^2}}
+= \frac{\dfrac{\sqrt{2}}{2}\sqrt{1-\beta^2}\,u}{1 + \dfrac{\sqrt{2}}{2}\dfrac{uv}{c^2}}.
+\]
+
+$y$方向无长度收缩，由运动学关系得：
+\[
+T = \frac{l\sin45^\circ}{u_y}
+= \frac{1 + \dfrac{\sqrt{2}}{2}\dfrac{uv}{c^2}}{\sqrt{1-\beta^2}}\cdot\frac{l}{u}.
+\]
+
+\section*{技巧与知识点}
+
+\begin{tipBox}
+\begin{enumerate}
+  \item \textbf{知识点1：} 狭义相对论中长度收缩仅发生在两惯性系的相对运动方向（$x$方向），垂直运动方向（$y$方向）物体长度保持不变。
+  \item \textbf{知识点2：} 本题综合考查洛伦兹时空变换、相对论速度变换两大核心公式，是狭义相对论运动学典型综合题型。
+\end{enumerate}
+\end{tipBox}
+
+\section*{复习建议}
+
+1. 熟练背诵洛伦兹坐标变换、时间变换以及相对论速度变换的正、逆公式，明确公式的适用参考系。
+
+2. 严格区分固有长度、运动长度、固有时间、运动时间四个基础概念，解题时优先判定研究对象所处参考系。
+
+\end{document}

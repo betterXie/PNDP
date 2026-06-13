@@ -1,0 +1,338 @@
+\documentclass[11pt,a4paper]{ctexart}
+
+\usepackage{amsmath,amssymb,bm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usetikzlibrary{arrows.meta,calc}
+
+\geometry{left=2.15cm,right=2.15cm,top=2.0cm,bottom=2.0cm}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\linespread{1.12}
+
+\definecolor{mainblue}{RGB}{39,91,150}
+\definecolor{lightblue}{RGB}{232,241,252}
+\definecolor{darkgray}{RGB}{65,65,65}
+\definecolor{lightgray}{RGB}{245,246,248}
+
+\titleformat{\section}{\large\bfseries\color{mainblue}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{darkgray}}{}{0em}{}
+\titlespacing*{\section}{0pt}{0.9em}{0.45em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.25em,topsep=0.25em}
+\setlist[itemize]{leftmargin=2.0em,itemsep=0.2em,topsep=0.2em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small 格物助航｜每日一练}
+\rhead{\small 2026.6.11}
+\cfoot{\small 第 \thepage\ 页 / 共 \pageref{LastPage} 页}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtcolorbox{problemBox}{
+  colback=lightblue,
+  colframe=mainblue,
+  arc=2mm,
+  boxrule=0.7pt,
+  left=1.0em,
+  right=1.0em,
+  top=0.8em,
+  bottom=0.8em,
+  before skip=0.6em,
+  after skip=0.8em
+}
+
+\newtcolorbox{tipBox}{
+  colback=lightgray,
+  colframe=darkgray,
+  arc=1.5mm,
+  boxrule=0.5pt,
+  left=0.9em,
+  right=0.9em,
+  top=0.6em,
+  bottom=0.6em,
+  before skip=0.5em,
+  after skip=0.5em
+}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\bm{i}}
+\newcommand{\jj}{\bm{j}}
+
+\begin{document}
+
+\begin{center}
+  {\Large\bfseries\color{mainblue} 格物助航｜每日一练}\par
+  \vspace{0.25em}
+  {\large 力学第六章：质心力学定理}\par
+  \vspace{0.35em}
+  {\small 2026年6月11日}\par
+  \vspace{0.35em}
+  {\small 编写：贡泽轩}
+\end{center}
+
+\vspace{-0.3em}
+
+\begin{problemBox}
+\noindent\textbf{题目}\quad
+质量为 $m$ 的质点 $A$ 与质量为 $M$ 的质点 $B$ 只受彼此之间的万有引力作用。
+初始时两者相距很远，可认为 $r=\infty$，且在惯性参考系中 $B$ 静止，$A$ 相对 $B$ 的速度大小为 $v_0$。
+若不受万有引力作用，质点 $A$ 将沿其初始速度方向作匀速直线运动；质点 $B$ 到这条直线的垂直距离为 $D$，称为碰撞参数或瞄准距离。
+\begin{enumerate}
+    \item 求两质点之间的最小距离 $r_{\min}$。
+    \item 若 $M\gg m$，可近似认为 $B$ 固定不动。若实验测得最小距离为 $d$，反求 $B$ 的质量 $M$。
+    \item 说明为什么在最接近点处不能令质点的速度为零。
+\end{enumerate}
+\end{problemBox}
+
+
+\section*{详细解法}
+
+\subsection*{一、把两体问题化为相对运动问题}
+两质点只受内力作用，且内力沿两质点连线方向，因此这是一个典型的有心力问题。
+设相对位矢为
+\[
+\bm r=\bm r_A-\bm r_B,
+\]
+两质点间距离为
+\[
+r=|\bm r|.
+\]
+引入约化质量
+\[
+\mu=\frac{mM}{m+M}.
+\]
+两体相对运动可等效为一个质量为 $\mu$ 的质点在势能场
+\[
+U(r)=-\frac{GmM}{r}
+\]
+中运动。
+这里不要分别写 $A$、$B$ 的运动方程，而要改写为相对运动。
+这样问题就变成了一个“一个质点在有心引力场中运动”的问题。
+
+\subsection*{二、写出角动量守恒}
+万有引力始终沿 $\bm r$ 方向，因此对两体连线方向没有力矩，等效质点的角动量守恒：
+\[
+L=\mu r^2\dot{\theta}=\mu r v_\perp=\text{常量}.
+\]
+在 $r=\infty$ 时，相对速度为 $v_0$，碰撞参数为 $D$，所以相对运动的初始角动量为
+\[
+L=\mu v_0D.
+\]
+设两质点最接近时的距离为 $r_{\min}$，此时相对速度大小为 $u$。
+在最接近点，径向速度为零，即
+\[
+\dot r=0.
+\]
+因此此时相对速度完全沿切向，有
+\[
+L=\mu r_{\min}u.
+\]
+由角动量守恒得
+\[
+\mu v_0D=\mu r_{\min}u,
+\]
+所以
+\[
+u=\frac{v_0D}{r_{\min}}.
+\]
+
+\subsection*{三、写出机械能守恒}
+由于万有引力是保守力，机械能守恒。
+初始时 $r=\infty$，势能为零，因此相对运动的总机械能为
+\[
+E=\frac{1}{2}\mu v_0^2.
+\]
+在最近点处，距离为 $r_{\min}$，速度大小为 $u$，势能为
+\[
+U(r_{\min})=-\frac{GmM}{r_{\min}}.
+\]
+于是
+\[
+E=\frac{1}{2}\mu u^2-\frac{GmM}{r_{\min}}.
+\]
+代入能量守恒：
+\[
+\frac{1}{2}\mu v_0^2
+=
+\frac{1}{2}\mu u^2-\frac{GmM}{r_{\min}}.
+\]
+再代入
+\[
+u=\frac{v_0D}{r_{\min}},
+\]
+得到
+\[
+\frac{1}{2}\mu v_0^2
+=
+\frac{1}{2}\mu \frac{v_0^2D^2}{r_{\min}^2}
+-\frac{GmM}{r_{\min}}.
+\]
+两边同乘以 $2/\mu$：
+\[
+v_0^2
+=
+\frac{v_0^2D^2}{r_{\min}^2}
+-\frac{2GmM}{\mu r_{\min}}.
+\]
+因为
+\[
+\frac{mM}{\mu}=m+M,
+\]
+所以
+\[
+\frac{GmM}{\mu}=G(m+M).
+\]
+于是
+\[
+v_0^2
+=
+\frac{v_0^2D^2}{r_{\min}^2}
+-\frac{2G(m+M)}{r_{\min}}.
+\]
+整理为关于 $r_{\min}$ 的二次方程：
+\[
+v_0^2 r_{\min}^2
++2G(m+M)r_{\min}
+-v_0^2D^2=0.
+\]
+取正根，得
+\[
+\boxed{
+r_{\min}
+=
+\frac{
+\sqrt{G^2(m+M)^2+v_0^4D^2}
+-G(m+M)
+}{v_0^2}
+}.
+\]
+
+\subsection*{四、固定中心近似下反求 $M$}
+若 $M\gg m$，则
+\[
+m+M\simeq M.
+\]
+若已知最近距离为 $d$，则由上面的二次方程
+\[
+v_0^2d^2+2GMd-v_0^2D^2=0.
+\]
+移项得
+\[
+2GMd=v_0^2(D^2-d^2).
+\]
+所以
+\[
+\boxed{
+M=\frac{v_0^2(D^2-d^2)}{2Gd}
+}.
+\]
+这也说明：对于吸引力场，轨道会向中心偏折，所以通常有
+\[
+d<D.
+\]
+若计算中得到 $d\geq D$，就要检查题意或符号是否出错。
+
+\subsection*{五、说明最近点处速度不是零}
+最近点的物理条件是
+\[
+\dot r=0,
+\]
+意思是距离 $r$ 不再继续减小，径向速度为零。
+但是速度还有切向分量，因此一般有
+\[
+u\neq 0.
+\]
+如果误以为最近点速度为零，就会得到
+\[
+L=\mu r_{\min}u=0,
+\]
+这与初始角动量
+\[
+L=\mu v_0D
+\]
+矛盾。只要 $D\neq 0$，角动量就不为零，最近点处速度就不可能为零。
+
+\section*{技巧与知识点}
+
+\begin{tipBox}
+\begin{enumerate}
+    \item \textbf{两体问题先转化为相对运动问题。}
+    
+    对于两个质点之间的相互作用，不要直接硬写两个运动方程。应引入相对位矢
+    \[
+    \bm r=\bm r_A-\bm r_B
+    \]
+
+    和约化质量
+    \[
+    \mu=\frac{mM}{m+M}.
+    \]
+
+    \item \textbf{有心力问题优先寻找守恒量。}
+    
+    万有引力沿两质点连线方向，因此力矩为零，角动量守恒：
+    \[
+    L=\mu r v_\perp=\text{常量}.
+    \]
+
+    \item \textbf{保守力问题使用机械能守恒。}
+    
+    引力势能为
+    \[
+    U(r)=-\frac{GmM}{r}.
+    \]
+
+    注意引力势能是负的，这是本题最容易错的符号之一。
+
+    \item \textbf{最近距离的条件是径向速度为零。}
+    
+    最近点处不是总速度为零，而是
+    \[
+    \dot r=0.
+    \]
+
+    此时速度完全沿切向。
+
+    \item \textbf{碰撞参数 $D$ 对应初始角动量。}
+    
+    初始角动量不是 $\mu r v_0$，因为初始时 $r=\infty$。
+    正确写法是
+    \[
+    L=\mu v_0D.
+    \]
+
+    这里的 $D$ 是速度方向到力心的垂直距离。
+\end{enumerate}
+\end{tipBox}
+
+\section*{复习建议}
+
+\begin{enumerate}
+    \item 复习第六章时，应把“质心”和“相对运动”联系起来看。
+    质心描述整体运动，相对坐标描述内部运动。
+    
+    \item 遇到两体相互作用题，先问自己三个问题：外力是否为零？内力是否为有心力？内力是否为保守力？
+    这三个问题分别对应动量守恒、角动量守恒和机械能守恒。
+
+    \item 对有心运动题，建议熟练掌握以下三行：
+    \[
+    L=\mu r v_\perp=\mu v_0D,
+    \]
+    \[
+    E=\frac{1}{2}\mu v^2+U(r),
+    \]
+    \[
+    \text{最近点：}\quad \dot r=0,\quad v=v_\perp.
+    \]
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,129 @@
+
+\documentclass[11pt,a4paper]{ctexart}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usetikzlibrary{arrows.meta,calc}
+\geometry{left=2.15cm,right=2.15cm,top=2.0cm,bottom=2.0cm}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\linespread{1.12}
+\definecolor{mainblue}{RGB}{39,91,150}
+\definecolor{lightblue}{RGB}{232,241,252}
+\definecolor{darkgray}{RGB}{65,65,65}
+\definecolor{lightgray}{RGB}{245,246,248}
+\titleformat{\section}{\large\bfseries\color{mainblue}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{darkgray}}{}{0em}{}
+\titlespacing*{\section}{0pt}{0.9em}{0.45em}
+\titlespacing*{\subsection}{0pt}{0.65em}{0.25em}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.25em,topsep=0.25em}
+\setlist[itemize]{leftmargin=2.0em,itemsep=0.2em,topsep=0.2em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small 格物助航｜每日一练}
+\rhead{\small 2026.6.8}
+\cfoot{\small 第 \thepage\ 页 / 共 \pageref{LastPage} 页}
+\renewcommand{\headrulewidth}{0.4pt}
+\newtcolorbox{problemBox}{
+  colback=lightblue,
+  colframe=mainblue,
+  arc=2mm,
+  boxrule=0.7pt,
+  left=1.0em,
+  right=1.0em,
+  top=0.8em,
+  bottom=0.8em,
+  before skip=0.6em,
+  after skip=0.8em
+}
+\newtcolorbox{tipBox}{
+  colback=lightgray,
+  colframe=darkgray,
+  arc=1.5mm,
+  boxrule=0.5pt,
+  left=0.9em,
+  right=0.9em,
+  top=0.6em,
+  bottom=0.6em,
+  before skip=0.5em,
+  after skip=0.5em
+}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\bm{i}}
+\newcommand{\jj}{\bm{j}}
+\begin{document}
+\begin{center}
+  {\Large\bfseries\color{mainblue} 格物助航｜每日一练}\par
+  \vspace{0.25em}
+  {\large 力学第三章：动量变化定理与动量守恒}\par
+  \vspace{0.35em}
+  {\small 2026年6月8日}\par
+  \vspace{0.35em}
+  {\small 编写：2542 桃酥OvO}
+\end{center}
+\vspace{-0.3em}
+\begin{problemBox}
+\noindent\textbf{题目}\quad
+火箭初始质量为$m_0$，其中液体燃料质量为$m_\mathrm{liq}$，自地面竖直向上发射，重力加速度近似取成常量$g$，略去空气阻力。设火箭在单位时间内向下喷出的液体燃料质量为$\alpha$，喷射速度为常量$u_0$，试求燃料喷尽时火箭的速度$v_e$。（《力学》舒幼生编著 北京大学出版社 第70页）
+\end{problemBox}
+\section*{详细解法}
+\subsection*{一、变质量火箭模型与动量定理列式}
+设$t=0$时刻发射，$t$时刻火箭质量记为$m$，经$\dd t$时间喷出燃料质量$-\dd m=\alpha \dd t$，取向上为速度正方向，重力向下，大小记为$-mg$。
+$t$时刻系统总动量：$mv$；
+$t+\dd t$时刻总动量：$(m-\alpha \dd t)(v+\dd v)+\alpha \dd t(v-u_0)$；
+$\dd t$时间内外力冲量：$-mg\dd t$。
+由动量定理：动量增量等于合外力冲量
+\[
+(m-\alpha \dd t)(v+\dd v)+\alpha \dd t(v-u_0)-mv=-mg\dd t
+\]
+忽略高阶无穷小化简：
+\[
+m\dd v -u_0 \alpha \dd t = -mg\dd t
+\]
+整理
+\[
+-mg = m\frac{\dd v}{\dd t}-\alpha u_0
+\]
+由$\dfrac{\dd m}{\dd t}=-\alpha$，做链式变换$\displaystyle \frac{\dd v}{\dd t}=\frac{\dd v}{\dd m}\cdot \frac{\dd m}{\dd t}=-\alpha \frac{\dd v}{\dd m}$，代入得：
+\[
+-mg = -\alpha m \frac{\dd v}{\dd m}-\alpha u_0
+\]
+
+\subsection*{二、分离变量积分求解末速度}
+分离变量：
+\[
+\dd v=\left(\frac{g}{\alpha}-\frac{u_0}{m}\right)\dd m
+\]
+积分上下限：初态$m=m_0,v=0$；燃料耗尽$m=m_0-m_\mathrm{liq},v=v_e$
+\[
+\int_{0}^{v_e}\dd v=\int_{m_0}^{m_0-m_\mathrm{liq}} \left(\frac{g}{\alpha}-\frac{u_0}{m}\right)\dd m
+\]
+积分计算得到燃料喷尽速度：
+\[
+\boxed{v_e=u_0\ln\frac{m_0}{m_0-m_\mathrm{liq}}-\frac{m_\mathrm{liq}}{\alpha}g}
+\]
+\section*{技巧与知识点}
+\begin{tipBox}
+\begin{enumerate}
+  \item \textbf{概要：}本章动量定理在高中已有所涉及，主体上与高中内容的区别就在于拓展了对于连续变质量物体的动量定理计算和分析。常见的模型是火箭升空和细绳落地。
+质点动量定理：合力对质点提供的冲量等于质点的动量增量。
+动量守恒定律：若质点受到的合外力为0，则过程中质点的动量为守恒量。
+              若质点在某一方向上受到的合外力为0，则过程中质点在这个方向上的动量为守恒量。
+需要注意的是质点动量定理同样可以作用于质点系。
+
+  \item \textbf{知识点1：质点动量定理：}合力对质点的冲量等于质点动量增量，定理可推广至质点系；内力不改变系统总动量，只有外力改变总动量。
+  \item \textbf{知识点2：动量守恒定律：}系统合外力为零时总动量守恒；某一方向合外力为零，则该方向动量守恒。
+  \item \textbf{知识点3：变质量物体：}本章相较于高中新增变质量物体（火箭、落绳）动量问题，依靠微元+积分求解。
+  \item \textbf{解题技巧：}先写出初末两时刻系统动量，分析外力冲量再列动量方程；积分运算注意上下限与积分常数。
+\end{enumerate}
+\end{tipBox}
+\section*{复习建议}
+先牢记质点动量定理：合外力冲量等于动量变化，分清矢量式正交分解方法。梳理系统动量定理，区分内力、外力，明确内力不改变系统总动量。重点练习变力冲量积分、平均作用力计算题，留意碰撞、瞬间冲击题型。归纳动量守恒判定条件，对比动量定理与动能定理适用场景。整理错题，侧重坐标系选取、正负方向判定，结合例题熟练列式，快速判断能否用动量定理简化解题。
+\end{document}
